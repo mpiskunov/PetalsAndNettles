@@ -11,4 +11,9 @@ router.get('/about', function (req, res) {
   res.render('partials/about', { title: 'about', message: 'Hello there! I am the about' });
 });
 
+/* GET shop page */
+router.get('/shop', function (req, res) {
+  res.render('partials/shop', { title: 'The Shop', message: 'Hello there! Get ready to shop' });
+});
+
 module.exports = router;
