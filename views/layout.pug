@@ -5,31 +5,35 @@ html
 		script(src='js/jquery-3.2.1.min.js')
 		script(src='js/script.js')
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css", integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" , crossorigin="anonymous")
+		link(rel="stylesheet", type="text/css", href="css/style.css")
 		script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js", integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh", crossorigin="anonymous")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js", integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ",  crossorigin="anonymous")
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css">
 	body
-
-		nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+		nav.navbar.navbar-expand-lg.navbar-light.navbar-color
 			div.container
-				a.navbar-brand(href='http://google.com') Container
-				a(href='http://google.com')
-					i.material-icons ic_shopping_cart
-				button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarsExample05', aria-controls='navbarsExample05',aria-expanded='false' aria-label='Toggle navigation')
+				a.navbar-brand(href='http://google.com') P & N
+				button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
 					span.navbar-toggler-icon
-				div.navbar-collapse.collapse#navbarsExample05
+				div.collapse.navbar-collapse#navbarSupportedContent
 					ul.navbar-nav.mr-auto
 						li.nav-item.active
 							a.nav-link(href='/') Home
-						li.nav-item.active
-							a.nav-link(href='about') About
-						li.nav-item.active
-							a.nav-link(href='about') Contact
-						li.nav-item.active
-							a.nav-link(href='shop') Link
-		div.card.card-body.bg-light.mx-auto 
-			block content
+								span.sr-only (current)
+						li.nav-item
+							a.nav-link(href='/about') Link
+						li.nav-item.dropdown
+							a.nav-link.dropdown-toggle#navbarDropdown(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') DropDown
+							div.dropdown-menu(aria-labelledby='navbarDropdown')
+								a.dropdown-item(href='/shop') Action
+								a.dropdown-item(href='/shop') Another Action
+								div.dropdown-divider
+								a.dropdown-item(href='/shop') Something else here
+						li.nav-item
+						a.nav-link.disabled(href='#') Disabled
+		
+		block content
 		block foot
 			#footer
 			footer.footer
