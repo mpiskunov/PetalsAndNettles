@@ -1,7 +1,7 @@
 //- layout.pug
 html
 	head
-		title My Site - #{title}
+		title #{title}
 		script(src='js/jquery-3.2.1.min.js')
 		script(src='js/script.js')
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css", integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" , crossorigin="anonymous")
@@ -11,7 +11,7 @@ html
 		link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
 		link(rel="stylesheet", href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css")
 	body
-		nav.navbar.navbar-expand-lg.navbar-light.navbar-color
+		nav.navbar.navbar-expand-lg.navbar-light.navbar-color.mb-5
 			div.container
 				a.navbar-brand(href='http://google.com') P & N
 				button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
@@ -36,7 +36,7 @@ html
 						li.nav-item.dropdown
 							a.nav-link.dropdown-toggle#navbarDropdown(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') User
 							div.dropdown-menu(aria-labelledby='navbarDropdown')
-								a.dropdown-item(href='/shop') Login
+								a.dropdown-item(href='/login') Login
 								a.dropdown-item(href='/shop') Cart
 								div.dropdown-divider
 								a.dropdown-item(href='/shop') Something else here
