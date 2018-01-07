@@ -13,7 +13,13 @@ router.post('/login', function(req, res, next) {
 router.post('/signup', function(req, res, next) {
 
 	models.User.create({
-    firstName: 'talemashu'
+	    firstName: "sequelize" ,
+	    lastName: 'made this',
+	    address: '555 ypup street',
+	    state: 'ri',
+	    zipCode: '02895',
+	    email: 'matt@yahoo.com',
+	    password: 'supahsecret'
 	  }).then(function() {
 	  	console.log('user created');
 	    res.redirect('/');

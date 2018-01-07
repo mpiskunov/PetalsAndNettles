@@ -26,16 +26,17 @@ fs
   .forEach(file => {
     var model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
-    console.log(file);
+    //console.log(file);
   });
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
+    console.log(db[modelName]);
     db[modelName].associate(db);
   }
 });
+
 sequelize.sync();
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-console.log('index.js');
 module.exports = db;
