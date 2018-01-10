@@ -8,6 +8,9 @@ var Sequelize = require('sequelize');
 var routes = require('./routes/index');
 var auth = require('./routes/auth');
 var models = require('./models');
+var session = require('express-session');
+var passport = require('passport');
+
 /* make the app use the /static directory from public*/
 //app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -18,9 +21,14 @@ app.use('/auth',auth);
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'pug');
 
-// sequelize.sync().then(function() {
-//   console.log("ready to go!")
-// });
+app.use(session({ 
+    secret: 'secret',
+    resave: true, 
+    saveUninitialized:true})); // session secret
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

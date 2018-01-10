@@ -4,10 +4,14 @@
   "description": "E-commerce website used to sell clothing and other items",
   "main": "app.js",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.8.1",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "http": "0.0.0",
     "jquery": "^3.2.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pug": "^0.1.0",
     "sequelize": "^4.28.6",
     "sqlite3": "^3.1.13"
