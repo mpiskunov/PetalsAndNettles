@@ -5,19 +5,16 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user.dataValues.id);
 });
 
 passport.deserializeUser(function(userID, done) {
-  User.findOne({
+  models.User.findOne({
     where: {
-      id: userID
+      email: userID
     }
   }).then(function (user) {
-    if(user != null)
-      done(null, user);
-    else
-      done(null, false);
+      done(null, user.dataValues);
   });
 });
 
@@ -31,14 +28,14 @@ passport.use(new LocalStrategy({
   usernameField: 'email'
 },
   function(username, password, done) {
-    User.findOne({
+    models.User.findOne({
       where: {
         email: username,
         password: password
       }
     }).then(function(user, err) {
       if(user != null) {
-        done(null, user);
+        done(null, user.dataValues);
       } else {
         console.log("Invalid username or password.");
         done(null, false);
@@ -56,6 +53,28 @@ router.get('/login', function(req, res) {
 });
 
 router.post("/login", passport.authenticate("local", { successRedirect: "/", failureRedirect: "/auth"}));
+
+// router.post('/login', function(req, res, next) {
+//   models.User.findOne({
+//       where: {
+//         email: req.body.email,
+//         password: req.body.password
+//       }
+//     }).then(function(user, err) {
+//       if(user != null) {
+//         console.log(user.dataValues);
+//       } else {
+//         console.log("Invalid username or password.");
+
+//         console.log(user);
+//       }
+//     });
+// });
+
+router.get("/logout", function(req, res, next) {
+  req.logout();
+  res.redirect('/');
+});
 
 router.post('/signup', function(req, res, next) {
 	models.User.create({
