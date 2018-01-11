@@ -4,16 +4,16 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(userID, done) {
+passport.deserializeUser((userID, done) => {
   /* Find user that has same id in db */  models.User.findOne({
     where: {
       id: userID
     }
-  }).then(function (user) {
+  }).then((user) => {
     /* Determine if the user exists*/
     if(user)
       done(null, user.dataValues);
@@ -42,25 +42,19 @@ passport.use(new LocalStrategy({
         done(null, false);
       }
     });
-  }
-));
+}));
 
-router.get('/', function(req, res) {
+router.get('/', (req, res, next) => {
     res.send('invalid i hope');
 });
 
-router.get('/login', function(req, res) {
+router.get('/login', (req, res, next) => {
 	res.send('route to auth');
 });
 
 router.post("/login", passport.authenticate("local", { successRedirect: "/", failureRedirect: "/auth"}));
 
-router.get("/logout", function(req, res, next) {
-  req.logout();
-  res.redirect('/');
-});
-
-router.post('/signup', function(req, res, next) {
+router.post('/signup', (req, res, next) => {
 	models.User.create({
 	    firstName: req.body.firstName,
 	    lastName: req.body.lastName,
@@ -72,8 +66,7 @@ router.post('/signup', function(req, res, next) {
 	    password: req.body.password
     }).then(function() {
   	    res.redirect('/');
-  	  }
-    );
+  	  });
 });
 
 module.exports = router;

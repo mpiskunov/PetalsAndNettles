@@ -1,0 +1,15 @@
+extends ../layout.pug
+
+block user
+	a.nav-link.dropdown-toggle#navbarDropdown(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{req.user.firstName}
+						div.dropdown-menu(aria-labelledby='navbarDropdown')
+							a.dropdown-item(href='/login') Login
+							a.dropdown-item(href='/shop') Cart
+							div.dropdown-divider
+							a.dropdown-item(href='/shop') Something else here
+	a.nav-link.dropdown-toggle#navbarDropdown(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') user
+						div.dropdown-menu(aria-labelledby='navbarDropdown')
+							a.dropdown-item(href='/login') Login
+							a.dropdown-item(href='/shop') Cart
+							div.dropdown-divider
+							a.dropdown-item(href='/shop') Something else here
