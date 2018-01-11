@@ -2,12 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 /* GET index page */
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
+	if(req.user)
+		console.log(req.user);
   res.render('partials/index', { title: 'Petals & Nettles', message: 'Hello there! I am the index' });
 });
 
 /* GET about page */
 router.get('/about', function (req, res) {
+	if(req.user)
+		console.log('user in about page');
   res.render('partials/about', { title: 'About Us', message: 'Hello there! I am the about' });
 });
 

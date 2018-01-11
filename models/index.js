@@ -9,6 +9,7 @@ var db        = {};
 var sequelize = new Sequelize('PetalsAndNettles', 'username', 'password', {
     host: 'localhost',
     dialect: 'sqlite',
+    logging: false,
     pool: {
       max: 5,
       min: 0,
@@ -31,7 +32,6 @@ fs
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
-    console.log(db[modelName]);
     db[modelName].associate(db);
   }
 });
