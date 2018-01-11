@@ -8,6 +8,7 @@ var routes = require('./routes/index');
 var auth = require('./routes/auth');
 var session = require('express-session');
 var passport = require('passport');
+var flash = require('connect-flash-plus');
 
 /* make the app use the /static directory from public*/
 app.use(express.static(path.join(__dirname, 'public')));
@@ -16,8 +17,10 @@ app.use(session({
     secret: 'supah secret code up in here!',
     resave: true, 
     saveUninitialized:true,
+    cookie: {maxAge: 60000}
     }
 ));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 

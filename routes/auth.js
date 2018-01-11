@@ -25,9 +25,10 @@ passport.deserializeUser((userID, done) => {
 passport.use(new LocalStrategy({
   /* Instead of looking for username in req.body,
   passport will search for req.body.email */
-  usernameField: 'email'
+  usernameField: 'email',
+  passReqToCallback : true
 },
-  function(username, password, done) {
+  function(req, username, password, done) {
     models.User.findOne({
       where: 
       {
@@ -36,23 +37,29 @@ passport.use(new LocalStrategy({
       }
     }).then(function(user, err) {
       if(user != null) {
+        req.flash('message', 'Successful Login!');
         done(null, user.dataValues);
       } else {
-        /* TODO: Create flash messages */
         done(null, false);
       }
     });
 }));
 
 router.get('/', (req, res, next) => {
-    res.send('invalid i hope');
-});
-
-router.get('/login', (req, res, next) => {
-	res.send('route to auth');
+    if(!req.user)
+    {
+      req.flash('message', 'Unsuccessful Login...');
+      return res.redirect('/login');
+    }
 });
 
 router.post("/login", passport.authenticate("local", { successRedirect: "/", failureRedirect: "/auth"}));
+
+router.get("/logout", (req, res, next) => {
+  req.flash('message', 'Goodbye, ' + req.user.firstName + '! Come back soon.');
+  req.logout();
+  return res.redirect('/');
+});
 
 router.post('/signup', (req, res, next) => {
 	models.User.create({

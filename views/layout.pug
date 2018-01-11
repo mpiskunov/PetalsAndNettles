@@ -39,13 +39,16 @@ html
 								div.dropdown-menu(aria-labelledby='navbarDropdown')
 									a.dropdown-item(href='/shop') Cart
 									div.dropdown-divider
-									a.dropdown-item(href='/logout') Logout
+									a.dropdown-item(href='/auth/logout') Logout
 							else
 								a.nav-link.dropdown-toggle#navbarDropdown(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') User
 								div.dropdown-menu(aria-labelledby='navbarDropdown')
 									a.dropdown-item(href='/login') Login
 									div.dropdown-divider
 									a.dropdown-item(href='/shop') Something else here
+		- var message = req.flash("message");
+			if message != ''
+				div.alert.alert-success.text-center(role='alert') #{message}
 		block content
 		block foot
 			#footer
