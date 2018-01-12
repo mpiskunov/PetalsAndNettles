@@ -16,8 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ 
     secret: 'supah secret code up in here!',
     resave: true, 
-    saveUninitialized:true,
-    cookie: {maxAge: 60000}
+    saveUninitialized:true
     }
 ));
 app.use(flash());

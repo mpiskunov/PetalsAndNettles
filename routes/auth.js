@@ -76,4 +76,27 @@ router.post('/signup', (req, res, next) => {
   	  });
 });
 
+router.post('/update', (req, res, next) => {
+  models.User.findOne({
+      where: 
+      {
+        id: req.user.id
+      }
+        }).then(function(user, err) {
+          console.log(user);
+          user.update({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zipCode: req.body.zipCode,
+            email: req.body.email,
+            password: req.body.password
+          }).then(function() {
+            res.redirect('/');
+          });
+    });
+});
+
 module.exports = router;
