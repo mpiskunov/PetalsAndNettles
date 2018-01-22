@@ -3,14 +3,10 @@ extends ../layout.pug
 block content
 	div.container
 		div.row
-			div.col-sm.mx-auto-bg-dark.text-center 
-			div.col-sm.mx-auto-bg-dark.text-center 
-			div.col-sm.mx-auto-bg-dark.text-center 
-		div.row
-			div.col-sm-4.mx-auto-bg-dark.text-center This is the shop!
-			div.col-sm-4.mx-auto-bg-dark.text-center There will be items to shop from!
-			div.col-sm-4.mx-auto-bg-dark.text-center Click into your cart
-		div.row
-			div.col-sm-4.mx-auto-bg-dark.text-center 
-			div.col-sm-4.mx-auto-bg-dark.text-center 
-			div.col-sm-4.mx-auto-bg-dark.text-center 
+			div.col-md-3(style='border-right: 1px solid black; border-left: 1px solid black;')
+				p Search Conditions
+			div.col-md-6(style='border-right: 1px solid black')
+				- for(var i = 0; i < 10; i++) {
+					div(style='border-bottom: 1px solid black')
+						p Product
+				- }
